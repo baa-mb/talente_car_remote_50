@@ -17,7 +17,7 @@ radio.onReceivedValue(function (name, value) {
         basic.showLeds(`
             . . . . .
             . . . . .
-            . # # # .
+            . . # . .
             . . . . .
             . . . . .
             `)

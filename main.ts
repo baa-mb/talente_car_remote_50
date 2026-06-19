@@ -8,19 +8,26 @@ function neigungen () {
     kurve = Math.min(Math.max(input.rotation(Rotation.Roll), -45), 45)
 }
 input.onButtonPressed(Button.B, function () {
-    if (ist_oben) {
-        radio.sendValue("kupplung", 1)
-    } else {
-        radio.sendValue("kupplung", 0)
+    radio.sendValue("get_dist", 1)
+})
+radio.onReceivedValue(function (name, value) {
+    if (name == "distanz") {
+        basic.showNumber(value)
+        music.play(music.tonePlayable(262, music.beat(BeatFraction.Whole)), music.PlaybackMode.UntilDone)
+        basic.showLeds(`
+            . . . . .
+            . . . . .
+            . . # . .
+            . . . . .
+            . . . . .
+            `)
     }
-    ist_oben = !(ist_oben)
 })
 let kurve = 0
 let gerade = 0
-let ist_oben = false
 let g_empfind = 0
 g_empfind = 5
-ist_oben = true
+let ist_oben = true
 let alt_gerade = -99
 let alt_kurve = -99
 radio.setGroup(26)
